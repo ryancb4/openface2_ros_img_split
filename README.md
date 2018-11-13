@@ -8,14 +8,6 @@ This is a small ROS node that exposes OpenFace over ROS. In particular, given a 
   * Action Units
   * Debug Visualization (optional)
 
-This repository expects [Interaction Lab's fork of OpenFace](https://github.com/interaction-lab/OpenFace) and [OpenCV 3](https://github.com/opencv/opencv) to be installed.
-
-Dependencies of OpenFace include:
-  * `dlib`
-  * Boost Filesystem
-  * `tbb`
-  * OpenCV 3
-
 ## ROS Parameters
 
 ### Required
@@ -29,10 +21,12 @@ Dependencies of OpenFace include:
   * `~publish_viz` - Set to `true` to publish a debug visualization (default: `false`).
 
 ## Installation
-  * Install all dependencies (see below)
-  * Clone  [Interaction Lab's fork of OpenFace](https://github.com/interaction-lab/OpenFace), follow installation instructions, then `sudo make install` at the end
-  * Clone & re-compile `cv_bridge` ([in `vision_opencv` stack](http://wiki.ros.org/vision_opencv)) - be sure to clone vision\_opencv in the src directory of your catkin workspace.
-  * Clone [`usb_cam` ros node](http://wiki.ros.org/usb_cam) or other ros node of your choice for interfacing with USB camera
+
+* Clone the OpenFace project : `git clone https://github.com/TadasBaltrusaitis/OpenFace/tree/ebb67b179d89102aa57f3f87f1731a1e733a5ec2`
+* Download model : [Model download · TadasBaltrusaitis/OpenFace Wiki · GitHub](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Model-download)
+* Install OpenFace, following this instruction : [Unix Installation · TadasBaltrusaitis/OpenFace Wiki · GitHub](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation) (don't forget to sudo make install at the end)
+* Download [openface2_ros](https://github.com/ditoec/openface_ros) to your catkin src folder and `cd .. && catkin make`
+* Clone [`usb_cam` ros node](http://wiki.ros.org/usb_cam) or other ros node of your choice for interfacing with USB camera
 
 ### Dependencies
   * OpenCV 3 (If installing from source, make sure to run cmake as follows: `cmake -DBUILD_SHARED_LIBS=ON ..﻿⁠⁠⁠⁠`
@@ -59,12 +53,18 @@ then openface ros is linking against OpenCV2 instead of OpenCV3. To fix this: up
 
 ## Messages
 
+### Faces
+```
+openface_ros/Face[] faces
+```
+
 ### FaceFeatures
 ```
 std_msgs/Header header
 
 geometry_msgs/Vector3 left_gaze
 geometry_msgs/Vector3 right_gaze
+geometry_msgs/Vector3 gaze_angle
 
 geometry_msgs/Pose head_pose
 
@@ -80,3 +80,8 @@ string name
 float64 presence
 float64 intensity
 ```
+
+### Changelog
+* Accommodate major changes in openface 2.0 (functions and classes naming & grouping)
+* Add eye gaze angle in the Face message type
+* Add Faces message type (an array of Face message type) in order to accommodate the new multiple face detection in openface 2.0  

@@ -1,1 +1,1 @@
-openface_ros/Face[] faces
+openface2_ros/Face[] faces

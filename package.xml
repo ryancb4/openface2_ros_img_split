@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package>
-  <name>openface_ros</name>
-  <version>0.0.0</version>
-  <description>The openface_ros package</description>
+  <name>openface2_ros</name>
+  <version>1.0.0</version>
+  <description>The openface2_ros package</description>
 
-  <maintainer email="mcdorman@usc.edu">Braden McDorman</maintainer>
+  <maintainer email="dito.cahya@bristol.ac.uk">Dito Cahya</maintainer>
   <license>Apache 2</license>
 
-  <author email="mcdorman@usc.edu">Braden McDorman</author>
+  <author email="dito.cahya@bristol.ac.uk">Dito Cahya</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>std_msgs</build_depend>

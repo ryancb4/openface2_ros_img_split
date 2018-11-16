@@ -10,4 +10,4 @@ geometry_msgs/Pose head_pose
 geometry_msgs/Point[] landmarks_3d
 geometry_msgs/Point[] landmarks_2d
 
-openface_ros/ActionUnit[] action_units
+openface2_ros/ActionUnit[] action_units

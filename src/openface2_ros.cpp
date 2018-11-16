@@ -15,7 +15,6 @@
 #include <atomic>
 #include <mutex>
 #include <future>
-#include <chrono>
 #include <exception>
 
 #include <tbb/tbb.h>
@@ -25,9 +24,9 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include "openface_ros/ActionUnit.h"
-#include "openface_ros/Face.h"
-#include "openface_ros/Faces.h"
+#include "openface2_ros/ActionUnit.h"
+#include "openface2_ros/Face.h"
+#include "openface2_ros/Faces.h"
 
 #include <sensor_msgs/Image.h>
 
@@ -45,7 +44,6 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <geometry_msgs/TransformStamped.h>
 
-#include <Eigen/Dense>
 
 using namespace std;
 using namespace ros;
@@ -106,12 +104,12 @@ namespace
 }
 
 
-namespace openface_ros
+namespace openface2_ros
 {
-  class OpenFaceRos
+  class OpenFace2Ros
   {
   public:
-    OpenFaceRos(NodeHandle &nh, FaceAnalysis::FaceAnalyserParameters &face_analysis_params)
+    OpenFace2Ros(NodeHandle &nh, FaceAnalysis::FaceAnalyserParameters &face_analysis_params)
       : nh_(nh)
       , it_(nh_)
       , visualizer(true, false, false, true)
@@ -121,12 +119,8 @@ namespace openface_ros
 
       if(!pnh.getParam("image_topic", image_topic_)) throw invalid_argument("Expected ~image_topic parameter");
       
-      const auto base_path = package::getPath("openface_ros");
+      const auto base_path = package::getPath("openface2_ros");
 
-      //pnh.param<string>("clnf_model_path", clnf_model_path_, base_path + "model/main_ceclm_general.txt");
-      //pnh.param<string>("tri_model_path", tri_model_path_, base_path + "/model/tris_68_full.txt");
-      //pnh.param<string>("au_model_path", au_model_path_, base_path + "/model/AU_predictors/AU_all_best.txt");
-      //pnh.param<string>("haar_model_path", haar_model_path_, base_path + "/model/classifiers/haarcascade_frontalface_alt.xml");
       pnh.param<bool>("publish_viz", publish_viz_, false);
 
       int max_faces = 0;
@@ -139,13 +133,13 @@ namespace openface_ros
       if(rate <= 0) throw invalid_argument("~rate must be > 0");
       rate_ = round(30/rate);
 
-      camera_sub_ = it_.subscribeCamera(image_topic_, 1, &OpenFaceRos::process_incoming_, this);
+      camera_sub_ = it_.subscribeCamera(image_topic_, 1, &OpenFace2Ros::process_incoming_, this);
       faces_pub_ = nh_.advertise<Faces>("faces", 1000);
       if(publish_viz_) viz_pub_ = it_.advertise("openface/viz", 1);
       init_openface_();
     }
     
-    ~OpenFaceRos()
+    ~OpenFace2Ros()
     {
     }
     
@@ -549,9 +543,9 @@ namespace openface_ros
 
 int main(int argc, char *argv[])
 {
-  init(argc, argv, "openface_ros");
+  init(argc, argv, "openface2_ros");
   
-  using namespace openface_ros;
+  using namespace openface2_ros;
 
   NodeHandle nh;
 
@@ -561,7 +555,7 @@ int main(int argc, char *argv[])
 
   try
   {
-    OpenFaceRos openface_(nh,face_analysis_params);
+    OpenFace2Ros openface_(nh,face_analysis_params);
     spin();
   }
   catch(const exception &e)

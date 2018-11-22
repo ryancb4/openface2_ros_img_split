@@ -57,6 +57,7 @@ std_msgs/Header header
 
 openface_ros/Face[] faces
 uint32 count```
+```
 
 ### FaceFeatures
 ```

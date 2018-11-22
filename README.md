@@ -25,9 +25,10 @@ This is a ROS wrapper for OpenFace 2.0.6. In particular, given an image of a fac
 * Clone [`usb_cam` ros node](http://wiki.ros.org/usb_cam) or other ros node of your choice for interfacing with USB camera
 
 ### Running
-  * `roscore`
-  * `rosrun usb_cam usb_cam_node`
-  * `rosrun openface2_ros openface2_ros _image_topic:="/usb_cam/image_raw" _publish_viz:=true`
+
+* `roscore`
+* `rosrun usb_cam usb_cam_node`
+* `roslaunch openface2_ros openface2_ros.launch`
 
 ### Notes
 
@@ -43,17 +44,22 @@ If running `openface2_ros` results in a segfault or you see the following lines 
 
 then openface2 ros is linking against OpenCV2 instead of OpenCV3. To fix this: update cmake to at least 3.6.2, rebuild OpenCV3, clone vision\_opencv into the src folder of your catkin workspace, then recompile cv\_bridge. Remake your catkin workspace, and the segfault and warnings should have been resolved.
 
+## Published Topics
+
+* `/openface2/faces` ( `openface2_ros/faces` )
+* `/openface2/image` ( `sensor_msgs/Image` )
+
 ## Messages
 
 ### Faces
 ```
+std_msgs/Header header
+
 openface_ros/Face[] faces
-```
+uint32 count```
 
 ### FaceFeatures
 ```
-std_msgs/Header header
-
 geometry_msgs/Vector3 left_gaze
 geometry_msgs/Vector3 right_gaze
 geometry_msgs/Vector3 gaze_angle
@@ -73,7 +79,7 @@ float64 presence
 float64 intensity
 ```
 
-### Changelog
+## Changelog
 * Accommodate major changes in openface 2.0.6 (functions and classes naming & grouping)
 * Add eye gaze angle in the Face message type
 * Add Faces message type (an array of Face message type) in order to accommodate the new multiple face detection in openface 2.0

@@ -37,7 +37,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${OPENFACE_INCLUDE_DIR}
   ${OpenBLAS_INCLUDE_DIR}
-  ${TBB_ROOT_DIR}/include
   ${Boost_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}/boost
   ${OpenCV_INCLUDE_DIRS}
@@ -51,7 +50,6 @@ target_link_libraries(openface2_ros
   ${OPENFACE_LIBS}
   openblas
   dlib
-  tbb
   ${Boost_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )

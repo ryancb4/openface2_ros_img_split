@@ -1,6 +1,6 @@
-# ROS Wrapper for Openface 2.0.6
+# ROS Wrapper for Openface 2.1.0
 
-This is a ROS wrapper for OpenFace 2.0.6. In particular, given an image of a face, it will output:
+This is a ROS wrapper for OpenFace 2.1.0. In particular, given an image of a face, it will output:
   * Eye Gaze Vectors
   * Head Pose
   * 2D Landmarks
@@ -18,7 +18,7 @@ This is a ROS wrapper for OpenFace 2.0.6. In particular, given an image of a fac
 
 ## Installation
 
-* Clone the OpenFace project release 2.0.6 : `git clone https://github.com/TadasBaltrusaitis/OpenFace/tree/OpenFace_2.0.6`
+* Clone the OpenFace project release 2.1.0 : `git clone https://github.com/TadasBaltrusaitis/OpenFace/tree/OpenFace_2.1.0`
 * Download model : [Model download · TadasBaltrusaitis/OpenFace Wiki · GitHub](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Model-download)
 * Install OpenFace, following this instruction : [Unix Installation · TadasBaltrusaitis/OpenFace Wiki · GitHub](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation) (don't forget to sudo make install at the end)
 * Download [openface2_ros](https://github.com/ditoec/openface_ros) to your catkin src folder and `cd .. && catkin make`

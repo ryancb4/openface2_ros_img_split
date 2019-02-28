@@ -45,6 +45,10 @@ add_executable(openface2_ros src/openface2_ros.cpp)
 add_dependencies(openface2_ros ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(openface2_ros openface2_ros_generate_messages_cpp)
 
+add_executable(openface2_ros_single src/openface2_ros_single.cpp)
+add_dependencies(openface2_ros_single ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(openface2_ros_single openface2_ros_generate_messages_cpp)
+
 target_link_libraries(openface2_ros
   ${catkin_LIBRARIES}
   ${OPENFACE_LIBS}
@@ -55,6 +59,21 @@ target_link_libraries(openface2_ros
 )
 
 install(TARGETS openface2_ros
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+target_link_libraries(openface2_ros_single
+  ${catkin_LIBRARIES}
+  ${OPENFACE_LIBS}
+  openblas
+  dlib
+  ${Boost_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+install(TARGETS openface2_ros_single
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

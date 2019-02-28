@@ -123,7 +123,7 @@ namespace openface2_ros
 
       pnh.param<bool>("publish_viz", publish_viz_, false);
 
-      if(!pnh.getParam("max_faces", max_faces_)) pnh.param<int>("max_faces", max_faces_, 4);
+      if(!pnh.getParam("max_faces", max_faces_)) pnh.param<int>("max_faces", max_faces_, 1);
       if(max_faces_ <= 0) throw invalid_argument("~max_faces must be > 0");
 
       float rate = 0;

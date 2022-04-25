@@ -499,8 +499,8 @@ namespace openface2_ros
 
       	if(publish_viz_)
       	{ 
-        	visualizer.SetFps(fps_tracker.GetFPS());
-        	visualizer.ShowObservation();
+        	//visualizer.SetFps(fps_tracker.GetFPS());
+        	//visualizer.ShowObservation();
         	cv::waitKey(20);
         	auto viz_msg = cv_bridge::CvImage(img->header, "bgr8", visualizer.GetVisImage()).toImageMsg();
         	viz_pub_.publish(viz_msg);
